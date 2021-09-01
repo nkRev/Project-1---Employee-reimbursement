@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import model.User;
+
 import utils.HibernateUtil;
 
 public class UserDaoImpl implements UserDAO {
@@ -88,6 +89,7 @@ public class UserDaoImpl implements UserDAO {
 		}
 
 		return u;
+
 	}
 
 }
