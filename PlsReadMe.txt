@@ -2,6 +2,6 @@ Added employee ticket view frontend. Expects servelt called EmployeeTicketListSe
 
 Added manager ticket view frontend. Expects servelt called ManagerTicketListServlet using get.
 
-Added Jquery to maven dependency.
-
 Added ajax login page expects servlet called Login available at /Login
+
+Added ticket submit expects servlet called SubmitTicket

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Ticket Submission</title>
+</head>
+<body>
+    <form id="Submit-Ticket" onsubmit="return false">
+        <h1>Ticket Form</h1>
+        <h2>Reimbursement Type</h2>
+        <div class="FormRow">
+            <label for="Username">Lodging</label>
+            <input type="radio"  id="Ticket" name="Ticket" value="Lodging">
+            <label for="Username">Travel</label>
+            <input type="radio"  id="Ticket" name="Ticket" value="Travel">
+            <label for="Username">Food</label>
+            <input type="radio"  id="Ticket" name="Ticket" value="Food">
+            <label for="Username">Other</label>
+            <input type="radio"  id="Ticket" name="Ticket" value="Other">
+
+        </div>
+        <div class="FormRow">
+              <label for="Dollar-Amount">Dollar Amount:</label>
+              <input type="number" required name="Dollar-Amount" id="Dollar-Amount" >
+        </div>
+        <div class="FormRow">
+            <input type="datetime-local" required value="date" id="date">
+        </div>
+        <div class="FormRow">
+            <label for="Reason">Description of Request</label><br>
+            <textarea name="Reason" id="Reason" required rows="3" cols="20"></textarea>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+    <script>
+        const data = {ticket: 'Ticket', amount: 'Dollar-Amount', datetime: 'date', reason: Reason};
+    
+        fetch('/SubmitTicket', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(Response => Response.json())
+        .then(data => {
+            console.log('Success:', data);
+        } )
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    </script>
+</body>
