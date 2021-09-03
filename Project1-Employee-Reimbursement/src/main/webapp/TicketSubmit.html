@@ -34,3 +34,22 @@
             <input type="submit">
         </div>
     </form>
+    <script>
+        const data = {ticket: 'Ticket', amount: 'Dollar-Amount', datetime: 'date', reason: Reason};
+    
+        fetch('/SubmitTicket', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(Response => Response.json())
+        .then(data => {
+            console.log('Success:', data);
+        } )
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    </script>
+</body>
