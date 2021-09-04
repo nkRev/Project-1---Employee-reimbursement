@@ -5,11 +5,11 @@
 <title>Login Page</title>
 </head>
 <body>
-    <form id="LoginForm" onsubmit="return false">
+    <form id="LoginForm" method="post" onsubmit="return false">
         <h1>Login Form</h1>
         <div class="FormRow">
-            <label for="Username">Username:</label>
-            <input type="text" size="15" id="Usernaem" name="Username">
+            <label for="Username">Email:</label>
+            <input type="email" size="15" id="Usernaem" name="Username">
 
         </div>
         <div class="FormRow">
@@ -17,11 +17,42 @@
               <input type="password" size="15" name="Password" id="Password" >
         </div>
         <div class="FormRow" id="LoginButtonDiv">
-            <input type="submit" value="Login">
+            <input type="submit" name="Login" id="Login" value="Login">
         </div>
     </form>
         <script>
-            function login(form) {
+        $(document).ready(function(){
+        	$("#login").click(function(){
+        	var email = $("#Username").val();
+        	var password = $("#Password").val();
+        	// Checking for blank fields.
+        	if( email =='' || password ==''){
+        	$('input[type="text"],input[type="password"]');
+        	$('input[type="text"],input[type="password"]');
+        	alert("Please fill all fields...!!!!!!");
+        	}else {
+        	$.post("/Login",{ email1: email, password1:password},
+        	function(data) {
+        	if(data=='Invalid Email.......') {
+        	$('input[type="text"]');
+        	$('input[type="password"]');
+        	alert(data);
+        	}else if(data=='Email or Password is wrong...!!!!'){
+        	$('input[type="text"],input[type="password"]');
+        	alert(data);
+        	} else if(data=='Successfully Logged in...'){
+        	$("form")[0].reset();
+        	$('input[type="text"],input[type="password"]');
+        	alert(data);
+        	} else{
+        	alert(data);
+        	}
+        	});
+        	}
+        	});
+        	});
+    	
+           /* function login(form) {
                 let un = form.Username.value;
                 let pw = form.Password.value;
                 let xmlhttp = new XMLHttpRequest();
@@ -55,7 +86,7 @@
                         badLogin.style.display = 'none';
                     }, 3000);
                 }
-            }
+            }*/
         </script>
 </body>
 </html>
