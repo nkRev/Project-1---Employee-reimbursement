@@ -4,18 +4,21 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import dao.UserDaoImpl;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import model.User;
 
 @WebServlet("/Login")
-public class LoginServlet {
+public class LoginServlet extends HttpServlet {
 	private UserDaoImpl dao;
 	
-	//technically finished; may need to be revised
+
+	// technically finished; may need to be revised
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		
+
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();
 
@@ -34,7 +37,7 @@ public class LoginServlet {
 
 			} else {
 
-				res.sendRedirect("/EmployeeTicketListServlet");
+				res.sendRedirect("/EmployeeTicketListServlet?Username=" + u.getEmail());
 
 			}
 		} else {
