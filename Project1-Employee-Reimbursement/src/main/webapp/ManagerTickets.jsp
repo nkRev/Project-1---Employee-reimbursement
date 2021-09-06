@@ -19,7 +19,7 @@
 				<th>$ amount</th>
 				<th>Time Stamp</th>
 				<th>Description</th>
-				<th>Update Status</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,6 +34,9 @@
 				<td>${ticket.description}</td>
 				<td>
 					<a href="edit?id=<c:out value='${ticket.status}' />">update status</a>
+					<form action="updateservlet">
+						<button type="submit">update</button>
+					</form>
 				</td>
 			</tr>
 			</c:forEach>

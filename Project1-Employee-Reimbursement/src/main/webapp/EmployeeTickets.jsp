@@ -20,7 +20,6 @@
 				<th>$ amount</th>
 				<th>Time Stamp</th>
 				<th>Description</th>
-				<th>Update Status</th>
 			</tr>
 		</thead>
 		<tbody>
