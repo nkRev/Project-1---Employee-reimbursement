@@ -4,16 +4,22 @@
 
 <hibernate-configuration>
 	<session-factory>
-
+	
 		<property name="connection.url">jdbc:mysql://project1.c7vqhiutvrem.us-west-2.rds.amazonaws.com:3306/employee</property>
-		<property name="connection.username">admin</property>
+
+		<property name="connection.username">root</property>
+
 		<property name="connection.password">root</property>
+
 		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
-		<property name="hbm2ddl.auto">update</property>
+
+		<property name="hbm2ddl.auto">create-drop</property>
+
 		<property name="show_sql">true</property>
+
 		<mapping class="model.User" />
+		
 		<mapping class="model.Reimbursement" />
-		
-		
+
 	</session-factory>
 </hibernate-configuration>

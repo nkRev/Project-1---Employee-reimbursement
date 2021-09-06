@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "reimbursements")
@@ -15,53 +16,49 @@ public class Reimbursement {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "reimbursement_id")
+	@Column(name = "ticket_id")
 	private int reimbursementId;
 
+	//ticket
 	@Column(name = "submit_date")
-	private Date reimbursementSubmit; // submit date
-
-	// the date when you made the transaction
-	@Column(name = "tx_date")
-	private String transactionDate;
-
-	// who you paid
-	@Column(name = "paid_to")
-	private String paidTo;
-
+	private Date submitDate; // submit date
+	
+	//ticket
 	// type of reimbursement -> medical, travel, etc
-	@Column(name = "exepense_type")
+	@Column(name = "reimbursement_type")
 	private String reimbursementType;
-
-	@Column(name = "amount")
-	private double reimbursementAmt;
-
+	
+	//ticket
+	@Column(name = "dollar_amt")
+	private double dollarAmt;
+	
+	//ticket
+	//description 
+	@Column(name = "description")
+	private String description;
+	
+	//ticket
 	@Column(name = "status")
 	private String reimbursementStatus; // status of reimbursement
 
-	@Column(name = "resolved_date")
-	private Date reimbursementResolved; // resolved date
-
-	@Column(name = "user_id")
-	private int userId;
+	//who it came from
+	@Column(name = "email")
+	private int email;
 
 	public Reimbursement() {
 		super();
 	}
 
-	public Reimbursement(int reimbursementId, Date reimbursementSubmit, String transactionDate, String paidTo,
-			String reimbursementType, double reimbursementAmt, String reimbursementStatus, Date reimbursementResolved,
-			int userId) {
+	public Reimbursement(int reimbursementId, Date submitDate, String reimbursementType, double dollarAmt,
+			String description, String reimbursementStatus, int email) {
 		super();
 		this.reimbursementId = reimbursementId;
-		this.reimbursementSubmit = reimbursementSubmit;
-		this.transactionDate = transactionDate;
-		this.paidTo = paidTo;
+		this.submitDate = submitDate;
 		this.reimbursementType = reimbursementType;
-		this.reimbursementAmt = reimbursementAmt;
+		this.dollarAmt = dollarAmt;
+		this.description = description;
 		this.reimbursementStatus = reimbursementStatus;
-		this.reimbursementResolved = reimbursementResolved;
-		this.userId = userId;
+		this.email = email;
 	}
 
 	public int getReimbursementId() {
@@ -72,28 +69,12 @@ public class Reimbursement {
 		this.reimbursementId = reimbursementId;
 	}
 
-	public Date getReimbursementSubmit() {
-		return reimbursementSubmit;
+	public Date getSubmitDate() {
+		return submitDate;
 	}
 
-	public void setReimbursementSubmit(Date reimbursementSubmit) {
-		this.reimbursementSubmit = reimbursementSubmit;
-	}
-
-	public String getTransactionDate() {
-		return transactionDate;
-	}
-
-	public void setTransactionDate(String transactionDate) {
-		this.transactionDate = transactionDate;
-	}
-
-	public String getPaidTo() {
-		return paidTo;
-	}
-
-	public void setPaidTo(String paidTo) {
-		this.paidTo = paidTo;
+	public void setSubmitDate(Date submitDate) {
+		this.submitDate = submitDate;
 	}
 
 	public String getReimbursementType() {
@@ -104,12 +85,20 @@ public class Reimbursement {
 		this.reimbursementType = reimbursementType;
 	}
 
-	public double getReimbursementAmt() {
-		return reimbursementAmt;
+	public double getDollarAmt() {
+		return dollarAmt;
 	}
 
-	public void setReimbursementAmt(double reimbursementAmt) {
-		this.reimbursementAmt = reimbursementAmt;
+	public void setDollarAmt(double dollarAmt) {
+		this.dollarAmt = dollarAmt;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getReimbursementStatus() {
@@ -120,30 +109,20 @@ public class Reimbursement {
 		this.reimbursementStatus = reimbursementStatus;
 	}
 
-	public Date getReimbursementResolved() {
-		return reimbursementResolved;
+	public int getEmail() {
+		return email;
 	}
 
-	public void setReimbursementResolved(Date reimbursementResolved) {
-		this.reimbursementResolved = reimbursementResolved;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setEmail(int email) {
+		this.email = email;
 	}
 
 	@Override
 	public String toString() {
-		return "Reimbursement [reimbursementId=" + reimbursementId + ", reimbursementSubmit=" + reimbursementSubmit
-				+ ", transactionDate=" + transactionDate + ", paidTo=" + paidTo + ", reimbursementType="
-				+ reimbursementType + ", reimbursementAmt=" + reimbursementAmt + ", reimbursementStatus="
-				+ reimbursementStatus + ", reimbursementResolved=" + reimbursementResolved + ", userId=" + userId + "]";
+		return "Reimbursement [reimbursementId=" + reimbursementId + ", submitDate=" + submitDate
+				+ ", reimbursementType=" + reimbursementType + ", dollarAmt=" + dollarAmt + ", description="
+				+ description + ", reimbursementStatus=" + reimbursementStatus + ", email=" + email + "]";
 	}
 
-	
 	
 }

@@ -12,9 +12,12 @@ public class ReimbursementImpl implements ReimbursementDAO{
 	public Transaction transaction;
 	public Session session;
 	
+	/**
+	 * SHOULD BE CORRECT
+	 */
 	@Override
 	public List<Reimbursement> getAllReimbursements() {
-		// TODO Auto-generated method stub
+		
 		session = HibernateUtil.getSessionFactory().openSession();
 		
 		transaction = session.beginTransaction();
@@ -23,13 +26,17 @@ public class ReimbursementImpl implements ReimbursementDAO{
 		
 		return reimbursements;
 	}
-
+	
+	
+	//POSSIBLY INCORRECT
 	@Override
-	public List<Reimbursement> getReimbursementById(int userId) {
+	public List<Reimbursement> getReimbursementByEmail(String email) {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
-
+	
+	//POSSIBLY INCORRECT
 	@Override
 	public List<Reimbursement> getReimbursementbyStatus(String status) {
 		// TODO Auto-generated method stub
@@ -42,7 +49,7 @@ public class ReimbursementImpl implements ReimbursementDAO{
 		return rList;
 	}
 
-	//creates add new reimbursement form to db
+	//CREATES REIMBURSEMENT TICKET
 	@Override
 	public void createReimbursement(Reimbursement r) {
 		// TODO Auto-generated method stub
@@ -53,6 +60,7 @@ public class ReimbursementImpl implements ReimbursementDAO{
 		session.close();
 	}
 
+	//UPDATE REIMBURSEMENT TICKET
 	@Override
 	public void updateReimbursement(Reimbursement r) {
 		// TODO Auto-generated method stub

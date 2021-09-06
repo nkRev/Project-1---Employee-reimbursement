@@ -5,52 +5,42 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
 public class User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
-	private int userID;
 
 	@Column(name = "firstName")
 	private String fName;
 
 	@Column(name = "lastName")
 	private String lName;
-
+	
+	@Id
+	@OneToOne
 	@Column(name = "email", unique = true)
 	private String email;
 
 	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "role")
-	private String role; //user roll admin || employee
+	@Column(name = "manager")
+	private boolean manager; //user roll admin || employee
 	
 	public User() {
 
 	}
 
-	public User(int userID, String fName, String lName, String email, String password, String role) {
+	public User(String fName, String lName, String email, String password, boolean manager) {
 		super();
-		this.userID = userID;
 		this.fName = fName;
 		this.lName = lName;
 		this.email = email;
 		this.password = password;
-		this.role = role;
-	}
-
-	public int getUserID() {
-		return userID;
-	}
-
-	public void setUserID(int userID) {
-		this.userID = userID;
+		this.manager = manager;
 	}
 
 	public String getfName() {
@@ -85,21 +75,21 @@ public class User {
 		this.password = password;
 	}
 
-	public String getRole() {
-		return role;
+	public boolean isManager() {
+		return manager;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setManager(boolean manager) {
+		this.manager = manager;
 	}
 
 	@Override
 	public String toString() {
-		return "User [userID=" + userID + ", fName=" + fName + ", lName=" + lName + ", email=" + email + ", password="
-				+ password + ", role=" + role + "]";
+		return "User [fName=" + fName + ", lName=" + lName + ", email=" + email + ", password=" + password
+				+ ", manager=" + manager + "]";
 	}
 
 	
-	
+
 	
 }

@@ -9,8 +9,8 @@ public interface ReimbursementDAO {
 	//get all reimbursements
 	List<Reimbursement> getAllReimbursements();
 	
-	//get by emp/user id
-	List<Reimbursement> getReimbursementById(int userId);
+	//get by email
+	List<Reimbursement> getReimbursementByEmail(String email);
 	
 	//get by status (approved/pending/denied)
 	List<Reimbursement> getReimbursementbyStatus(String status);
