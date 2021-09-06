@@ -23,9 +23,7 @@
               <label for="Dollar-Amount">Dollar Amount:</label>
               <input type="number" required name="Dollar-Amount" id="Dollar-Amount" >
         </div>
-        <div class="FormRow">
-            <input type="datetime-local" required value="date" id="date">
-        </div>
+        
         <div class="FormRow">
             <label for="Reason">Description of Request</label><br>
             <textarea name="Reason" id="Reason" required rows="3" cols="20"></textarea>
@@ -35,10 +33,10 @@
         </div>
     </form>
     <script>
-        const data = {ticket: 'Ticket', amount: 'Dollar-Amount', datetime: 'date', reason: Reason};
+        const data = {ticket: 'Ticket', amount: 'Dollar-Amount', reason: 'Reason'};
     
         fetch('/SubmitTicket', {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },

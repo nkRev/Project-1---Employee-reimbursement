@@ -2,11 +2,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="login.css">
 <title>Login Page</title>
 </head>
 <body>
     <form id="LoginForm" method="post" onsubmit="return false">
-        <h1>Login Form</h1>
+        <h1 style="text-align:center;">Login Form</h1>
         <div class="FormRow">
             <label for="Username">Email:</label>
             <input type="email" size="15" id="Usernaem" name="Username">
@@ -23,34 +24,34 @@
         <script>
         $(document).ready(function(){
         	$("#login").click(function(){
-        	var email = $("#Username").val();
-        	var password = $("#Password").val();
-        	// Checking for blank fields.
-        	if( email =='' || password ==''){
-        	$('input[type="text"],input[type="password"]');
-        	$('input[type="text"],input[type="password"]');
-        	alert("Please fill all fields...!!!!!!");
-        	}else {
-        	$.post("/Login",{ email1: email, password1:password},
-        	function(data) {
-        	if(data=='Invalid Email.......') {
-        	$('input[type="text"]');
-        	$('input[type="password"]');
-        	alert(data);
-        	}else if(data=='Email or Password is wrong...!!!!'){
-        	$('input[type="text"],input[type="password"]');
-        	alert(data);
-        	} else if(data=='Successfully Logged in...'){
-        	$("form")[0].reset();
-        	$('input[type="text"],input[type="password"]');
-        	alert(data);
-        	} else{
-        	alert(data);
-        	}
-        	});
-        	}
-        	});
-        	});
+	        	var email = $("#Username").val();
+	        	var password = $("#Password").val();
+	        	// Checking for blank fields.
+	        	if( email =='' || password ==''){
+	        		$('input[type="text"],input[type="password"]');
+		        	$('input[type="text"],input[type="password"]');
+		        	alert("Please fill all fields...!!!!!!");
+	        	}else {
+		        	$.post("/Login",{ email1: email, password1:password},
+		        	function(data) {
+		        	if(data=='Invalid Email.......') {
+		        	$('input[type="text"]');
+		        	$('input[type="password"]');
+		        	alert(data);
+		        }else if(data=='Email or Password is wrong...!!!!'){
+		        	$('input[type="text"],input[type="password"]');
+		        	alert(data);
+	        	} else if(data=='Successfully Logged in...'){
+		        	$("form")[0].reset();
+		        	$('input[type="text"],input[type="password"]');
+		        	alert(data);
+		        } else{
+	        	alert(data);
+	        			}
+	        		});
+	        		}
+	        		});
+	        	});
     	
            /* function login(form) {
                 let un = form.Username.value;

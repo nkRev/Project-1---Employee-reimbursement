@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +19,11 @@
 				<th>$ amount</th>
 				<th>Time Stamp</th>
 				<th>Description</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
+		<c:forEach var="tickets" items="${listReimbursement}">
 			<tr>
 				<td>$(ticket.id}</td>
 				<td>${ticket.status}</td>
@@ -29,7 +32,12 @@
 				<td>${ticket.amount}</td>
 				<td>${ticket.time}</td>
 				<td>${ticket.description}</td>
+				<td>
+					<a href="edit?id=<c:out value='${ticket.id}' />">update status</a>
+					
+				</td>
 			</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </body>
