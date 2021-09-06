@@ -33,10 +33,8 @@
 				<td>${ticket.time}</td>
 				<td>${ticket.description}</td>
 				<td>
-					<a href="edit?id=<c:out value='${ticket.status}' />">update status</a>
-					<form action="/updateservlet">
-						<button type="submit">update</button>
-					</form>
+					<a href="edit?id=<c:out value='${ticket.id}' />">update status</a>
+					
 				</td>
 			</tr>
 			</c:forEach>
