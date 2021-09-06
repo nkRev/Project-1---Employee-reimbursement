@@ -34,7 +34,7 @@
 				<td>${ticket.description}</td>
 				<td>
 					<a href="edit?id=<c:out value='${ticket.status}' />">update status</a>
-					<form action="updateservlet">
+					<form action="/updateservlet">
 						<button type="submit">update</button>
 					</form>
 				</td>
