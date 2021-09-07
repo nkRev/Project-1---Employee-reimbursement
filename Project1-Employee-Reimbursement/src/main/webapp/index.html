@@ -2,29 +2,34 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <link rel="stylesheet" href="login.css">
 <title>Login Page</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </head>
 <body>
-    <form id="LoginForm" method="post" onsubmit="return false">
+    <div id="logdiv" class="container">
+    <form id="LoginForm" method="post" action="Login">
         <h1 style="text-align:center;">Login Form</h1>
         <div class="FormRow">
-            <label for="Username">Email:</label>
-            <input type="email" size="15" id="Usernaem" name="Username">
+            <label for="Username" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="Username" name="Username">
 
         </div>
         <div class="FormRow">
-              <label for="Password">Password:</label>
-              <input type="password" size="15" name="Password" id="Password" >
+              <label for="Password" class="form-label">Password:</label>
+              <input type="password" class="form-control" name="Password" id="Password" >
         </div>
         <div class="FormRow" id="LoginButtonDiv">
-            <input type="submit" name="Login" id="Login" value="Login">
+            <input type="button" name="Login" id="Login" value="Login" class="btn btn-primary">
         </div>
     </form>
+    </div>
         <script>
         $(document).ready(function(){
-        	$("#login").click(function(){
-	        	var email = $("#Username").val();
+        	$("#Login").click(function(){
+	        	var email = $("#Username").val().trim();
 	        	var password = $("#Password").val();
 	        	// Checking for blank fields.
 	        	if( email =='' || password ==''){
@@ -38,15 +43,15 @@
 		        	$('input[type="text"]');
 		        	$('input[type="password"]');
 		        	alert(data);
-		        }else if(data=='Email or Password is wrong...!!!!'){
-		        	$('input[type="text"],input[type="password"]');
-		        	alert(data);
-	        	} else if(data=='Successfully Logged in...'){
-		        	$("form")[0].reset();
-		        	$('input[type="text"],input[type="password"]');
-		        	alert(data);
-		        } else{
-	        	alert(data);
+				        }else if(data=='Email or Password is wrong...!!!!'){
+				        	$('input[type="text"],input[type="password"]');
+				        	alert(data);
+			        	} else if(data=='Successfully Logged in...'){
+				        	$("form")[0].reset();
+				        	$('input[type="text"],input[type="password"]');
+				        	alert(data);
+				        } else{
+			        	alert(data);
 	        			}
 	        		});
 	        		}
