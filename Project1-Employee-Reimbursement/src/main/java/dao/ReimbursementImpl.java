@@ -2,54 +2,92 @@ package dao;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import model.Reimbursement;
 import utils.HibernateUtil;
 
-public class ReimbursementImpl implements ReimbursementDAO{
+public class ReimbursementImpl implements ReimbursementDAO {
 	public Transaction transaction;
 	public Session session;
-	
+
 	/**
 	 * SHOULD BE CORRECT
 	 */
 	@Override
 	public List<Reimbursement> getAllReimbursements() {
-		
+
 		session = HibernateUtil.getSessionFactory().openSession();
-		
+
 		transaction = session.beginTransaction();
-		
+
 		List<Reimbursement> reimbursements = session.createQuery("from reimbursements").getResultList();
-		
+
 		return reimbursements;
 	}
-	
-	
-	//POSSIBLY INCORRECT
+
+	// RETRIEVES A LIST OF REIMBURSEMENTS BY EMAIL
 	@Override
 	public List<Reimbursement> getReimbursementByEmail(String email) {
 		// TODO Auto-generated method stub
-		
-		return null;
+		session = HibernateUtil.getSessionFactory().openSession();
+
+		transaction = session.beginTransaction();
+
+		final String hql = "from reimbursements where email= :email";
+
+		Query q = session.createQuery(hql);
+
+		q.setParameter("email", email);
+
+		List<Reimbursement> empReimbursements = q.getResultList();
+
+		return empReimbursements;
 	}
-	
-	//POSSIBLY INCORRECT
+
+	// RETRIEVES A SINGLE REIMBURSEMENT BY Ticket ID
 	@Override
-	public List<Reimbursement> getReimbursementbyStatus(String status) {
+	public Reimbursement getReimbursementsById(int id) {
+
+		session = HibernateUtil.getSessionFactory().openSession();
+
+		transaction = session.beginTransaction();
+
+		final String hql = "from reimbursements were ticket_id= :id";
+
+		Query q = session.createQuery(hql);
+
+		Reimbursement r = (Reimbursement) q.setParameter("id", id).getSingleResult();
+
+		return r;
+
+	}
+
+	// RETRIEVES PENDING TICKETS
+	@Override
+	public List<Reimbursement> getPendingTickets() {
 		// TODO Auto-generated method stub
 		session = HibernateUtil.getSessionFactory().openSession();
+
 		transaction = session.beginTransaction();
-		List<Reimbursement> rList;
-		
-		//not sure if this works
-		rList = (List<Reimbursement>) session.get(Reimbursement.class, status);
+
+		final String hql = "from reimbursements where status= :status";
+
+		Query q = session.createQuery(hql);
+
+		String status = "pending";
+
+		q.setParameter("status", status);
+
+		List<Reimbursement> rList = q.getResultList();
+
 		return rList;
 	}
 
-	//CREATES REIMBURSEMENT TICKET
+	// CREATES REIMBURSEMENT TICKET
 	@Override
 	public void createReimbursement(Reimbursement r) {
 		// TODO Auto-generated method stub
@@ -60,7 +98,7 @@ public class ReimbursementImpl implements ReimbursementDAO{
 		session.close();
 	}
 
-	//UPDATE REIMBURSEMENT TICKET
+	// UPDATE REIMBURSEMENT TICKET
 	@Override
 	public void updateReimbursement(Reimbursement r) {
 		// TODO Auto-generated method stub
@@ -70,6 +108,5 @@ public class ReimbursementImpl implements ReimbursementDAO{
 		transaction.commit();
 		session.close();
 	}
-
 
 }

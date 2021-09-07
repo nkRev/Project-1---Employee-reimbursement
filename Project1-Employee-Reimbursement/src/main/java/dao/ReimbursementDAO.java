@@ -5,21 +5,23 @@ import java.util.List;
 import model.Reimbursement;
 
 public interface ReimbursementDAO {
-	
-	//get all reimbursements
+
+	// get all reimbursements
 	List<Reimbursement> getAllReimbursements();
-	
-	//get by email
+
+	// get by email
 	List<Reimbursement> getReimbursementByEmail(String email);
 	
-	//get by status (approved/pending/denied)
-	List<Reimbursement> getReimbursementbyStatus(String status);
-	
-	//add reimbursement
+	//get by ticket id
+	public Reimbursement getReimbursementsById(int id);
+
+	// get Pending Tickets
+	List<Reimbursement> getPendingTickets();
+
+	// add reimbursement
 	void createReimbursement(Reimbursement r);
-	
-	//update reimbursement
+
+	// update reimbursement
 	void updateReimbursement(Reimbursement r);
-	
 
 }
