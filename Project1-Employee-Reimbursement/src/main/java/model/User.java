@@ -20,7 +20,6 @@ public class User {
 	private String lName;
 	
 	@Id
-	@OneToOne
 	@Column(name = "email", unique = true)
 	private String email;
 

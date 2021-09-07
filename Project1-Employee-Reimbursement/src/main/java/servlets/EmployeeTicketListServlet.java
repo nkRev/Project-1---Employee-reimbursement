@@ -1,20 +1,20 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import dao.ReimbursementDAO;
 import dao.ReimbursementDaoFactory;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import model.Reimbursement;
 
-@WebServlet("/EmployeeTicketListServlet")
+
 public class EmployeeTicketListServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -31,13 +31,15 @@ public class EmployeeTicketListServlet extends HttpServlet {
 
 		res.setContentType("text/html");
 
+		PrintWriter out = res.getWriter();
+		
 		// gets email... don't ask but login.html has the real answer...
 		String email = req.getParameter("Username");
 
 		ReimbursementDAO dao = ReimbursementDaoFactory.getDao();
 
 		List<Reimbursement> reimbursements = dao.getReimbursementByEmail(email);
-
+		
 		req.setAttribute("listReimbursements", reimbursements);
 
 		Cookie c = new Cookie("email", email);

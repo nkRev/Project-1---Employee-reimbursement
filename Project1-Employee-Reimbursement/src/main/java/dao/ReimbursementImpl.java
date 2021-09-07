@@ -24,10 +24,13 @@ public class ReimbursementImpl implements ReimbursementDAO {
 
 		transaction = session.beginTransaction();
 
-		List<Reimbursement> reimbursements = session.createQuery("from reimbursements").getResultList();
+		List<Reimbursement> reimbursements = session.createQuery("from Reimbursement").getResultList();
+		
+		transaction.commit();
 
 		return reimbursements;
 	}
+
 
 	// RETRIEVES A LIST OF REIMBURSEMENTS BY EMAIL
 	@Override
@@ -37,7 +40,7 @@ public class ReimbursementImpl implements ReimbursementDAO {
 
 		transaction = session.beginTransaction();
 
-		final String hql = "from reimbursements where email= :email";
+		final String hql = "from Reimbursement where email= :email";
 
 		Query q = session.createQuery(hql);
 
@@ -56,7 +59,7 @@ public class ReimbursementImpl implements ReimbursementDAO {
 
 		transaction = session.beginTransaction();
 
-		final String hql = "from reimbursements were ticket_id= :id";
+		final String hql = "from Reimbursement were ticket_id= :id";
 
 		Query q = session.createQuery(hql);
 
@@ -74,7 +77,7 @@ public class ReimbursementImpl implements ReimbursementDAO {
 
 		transaction = session.beginTransaction();
 
-		final String hql = "from reimbursements where status= :status";
+		final String hql = "from Reimbursement where status= :status";
 
 		Query q = session.createQuery(hql);
 
@@ -95,7 +98,7 @@ public class ReimbursementImpl implements ReimbursementDAO {
 		transaction = session.beginTransaction();
 		session.save(r);
 		transaction.commit();
-		session.close();
+	
 	}
 
 	// UPDATE REIMBURSEMENT TICKET
@@ -106,7 +109,7 @@ public class ReimbursementImpl implements ReimbursementDAO {
 		transaction = session.beginTransaction();
 		session.update(r);
 		transaction.commit();
-		session.close();
+
 	}
 
 }

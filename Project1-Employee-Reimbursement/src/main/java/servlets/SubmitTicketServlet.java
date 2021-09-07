@@ -2,12 +2,13 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.Optional;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import dao.ReimbursementDAO;
 import dao.ReimbursementDaoFactory;
@@ -47,13 +48,8 @@ public class SubmitTicketServlet extends HttpServlet {
 
 		// read saved cookie from EmployeeTicketListServlet
 		Cookie c[] = req.getCookies();
-
-		// just curious on how many cookies would be returned...
-		for (Cookie cookie : c) {
-			System.out.println(cookie);
-		}
-
-		String email = c[1].getValue();
+		
+		String email = c[0].getValue();
 
 		// set data as Reimbursement Object
 		r.setDescription(desc);
@@ -65,7 +61,7 @@ public class SubmitTicketServlet extends HttpServlet {
 
 		dao.createReimbursement(r);
 
-		res.sendRedirect("/EmployeeTicketListServlet");
+		res.sendRedirect("EmployeeTicketListServlet?Username="+email);
 
 	}
 
