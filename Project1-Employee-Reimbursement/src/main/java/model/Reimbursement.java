@@ -19,38 +19,38 @@ public class Reimbursement {
 	@Column(name = "ticket_id")
 	private int reimbursementId;
 
-	//ticket
+	// ticket
 	@Column(name = "submit_date")
 	private Date submitDate; // submit date
-	
-	//ticket
+
+	// ticket
 	// type of reimbursement -> medical, travel, etc
 	@Column(name = "reimbursement_type")
 	private String reimbursementType;
-	
-	//ticket
+
+	// ticket
 	@Column(name = "dollar_amt")
 	private double dollarAmt;
-	
-	//ticket
-	//description 
+
+	// ticket
+	// description
 	@Column(name = "description")
 	private String description;
-	
-	//ticket
+
+	// ticket
 	@Column(name = "status")
 	private String reimbursementStatus; // status of reimbursement
 
-	//who it came from
+	// who it came from
 	@Column(name = "email")
-	private int email;
+	private String email;
 
 	public Reimbursement() {
 		super();
 	}
 
 	public Reimbursement(int reimbursementId, Date submitDate, String reimbursementType, double dollarAmt,
-			String description, String reimbursementStatus, int email) {
+			String description, String reimbursementStatus, String email) {
 		super();
 		this.reimbursementId = reimbursementId;
 		this.submitDate = submitDate;
@@ -109,11 +109,11 @@ public class Reimbursement {
 		this.reimbursementStatus = reimbursementStatus;
 	}
 
-	public int getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(int email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
@@ -124,5 +124,4 @@ public class Reimbursement {
 				+ description + ", reimbursementStatus=" + reimbursementStatus + ", email=" + email + "]";
 	}
 
-	
 }
