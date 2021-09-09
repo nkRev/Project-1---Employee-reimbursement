@@ -3,53 +3,56 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Ticket Submission</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous">
+
+<link rel="stylesheet" href="css/ticket.css">
+
 </head>
 <body>
-    <form id="Submit-Ticket" onsubmit="return false">
-        <h1>Ticket Form</h1>
-        <h2>Reimbursement Type</h2>
-        <div class="FormRow">
-            <label for="Username">Lodging</label>
-            <input type="radio"  id="Ticket" name="Ticket" value="Lodging">
-            <label for="Username">Travel</label>
-            <input type="radio"  id="Ticket" name="Ticket" value="Travel">
-            <label for="Username">Food</label>
-            <input type="radio"  id="Ticket" name="Ticket" value="Food">
-            <label for="Username">Other</label>
-            <input type="radio"  id="Ticket" name="Ticket" value="Other">
+	<div class="container">
+		<form id="Submit-Ticket" method="post" action="SubmitTicket">
+			<h1>Ticket Form</h1>
+			<h5>Reimbursement Type</h5>
+			<div class="FormRow">
+				<label for="Username">Lodging</label> <input type="radio"
+					id="Ticket" name="Ticket" value="Lodging"> <label
+					for="Username">Travel</label> <input type="radio" id="Ticket"
+					name="Ticket" value="Travel"> <label for="Username">Food</label>
+				<input type="radio" id="Ticket" name="Ticket" value="Food">
+				<label for="Username">Other</label> <input type="radio" id="Ticket"
+					name="Ticket" value="Other">
 
-        </div>
-        <div class="FormRow">
-              <label for="Dollar-Amount">Dollar Amount:</label>
-              <input type="number" required name="Dollar-Amount" id="Dollar-Amount" >
-        </div>
-        <div class="FormRow">
-            <input type="datetime-local" required value="date" id="date">
-        </div>
-        <div class="FormRow">
-            <label for="Reason">Description of Request</label><br>
-            <textarea name="Reason" id="Reason" required rows="3" cols="20"></textarea>
-        </div>
-        <div>
-            <input type="submit">
-        </div>
-    </form>
-    <script>
-        const data = {ticket: 'Ticket', amount: 'Dollar-Amount', datetime: 'date', reason: 'Reason'};
-    
-        fetch('/SubmitTicket', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+			</div>
+			<div class="FormRow">
+				<label for="Dollar-Amount">Dollar Amount:</label> <input
+					type="number" required name="Dollar-Amount" id="Dollar-Amount">
+			</div>
+
+			<div class="FormRow">
+				<label for="Reason">Description of Request</label><br>
+				<textarea name="Reason" id="Reason" required rows="3" cols="20"></textarea>
+			</div>
+			<div>
+				<input type="submit" class="btn btn-primary">
+			</div>
+		</form>
+	</div>
+
+	<script>
+        $(document).ready(function(){
+            $("#SubmitTicket").click(function(){
+                var ticket = $("#Ticket").val();
+                var amount = $("#Dollar-Amount").val();
+                var reason = $("#Reason").val();
+                $.post("/SubmitTicket",{Ticket: ticket, DollarAmount: dollaramount, Reason:reason})
+            })
         })
-        .then(Response => Response.json())
-        .then(data => {
-            console.log('Success:', data);
-        } )
-        .catch((error) => {
-            console.error('Error:', error);
-        });
     </script>
 </body>

@@ -2,34 +2,29 @@ package model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
 public class User {
 
-
 	@Column(name = "firstName")
 	private String fName;
 
 	@Column(name = "lastName")
 	private String lName;
-	
+
 	@Id
-	@OneToOne
 	@Column(name = "email", unique = true)
 	private String email;
 
 	@Column(name = "password")
 	private String password;
-	
+
 	@Column(name = "manager")
-	private boolean manager; //user roll admin || employee
-	
+	private boolean manager; // user role manager || employee
+
 	public User() {
 
 	}
@@ -89,7 +84,4 @@ public class User {
 				+ ", manager=" + manager + "]";
 	}
 
-	
-
-	
 }

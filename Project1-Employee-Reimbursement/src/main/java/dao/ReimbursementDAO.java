@@ -11,8 +11,8 @@ public interface ReimbursementDAO {
 
 	// get by email
 	List<Reimbursement> getReimbursementByEmail(String email);
-	
-	//get by ticket id
+
+	// get by ticket id
 	public Reimbursement getReimbursementsById(int id);
 
 	// get Pending Tickets

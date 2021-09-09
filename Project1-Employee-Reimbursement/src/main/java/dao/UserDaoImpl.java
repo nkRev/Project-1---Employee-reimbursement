@@ -2,6 +2,8 @@ package dao;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -21,17 +23,11 @@ public class UserDaoImpl implements UserDAO {
 
 			transaction = session.beginTransaction();
 
-			users = session.createQuery("from users").getResultList();
+			users = session.createQuery("from User").getResultList();
 
 			transaction.commit();
 
 		} catch (Exception e) {
-
-			if (transaction != null) {
-
-				transaction.rollback();
-
-			}
 
 			e.printStackTrace();
 
@@ -56,11 +52,6 @@ public class UserDaoImpl implements UserDAO {
 
 		} catch (Exception e) {
 
-			if (transaction != null) {
-
-				transaction.rollback();
-
-			}
 			e.printStackTrace();
 		}
 
@@ -70,26 +61,22 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public User getUserByEmail(String email) {
 		// TODO Auto-generated method stub
-		User u = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		User u = new User();
 
-			transaction = session.beginTransaction();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 
-			u = session.get(User.class, email);
+		transaction = session.beginTransaction();
 
-			transaction.commit();
+		final String hql = "from User where email= :email";
 
-		} catch (Exception e) {
+		Query q = session.createQuery(hql);
 
-			if (transaction != null) {
+		q.setParameter("email", email);
 
-				transaction.rollback();
-
-			}
-		}
+		u = (User) q.getSingleResult();
 
 		return u;
 
 	}
-	
+
 }

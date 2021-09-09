@@ -1,0 +1,26 @@
+@charset "ISO-8859-1";
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: teal;
+	height: 100vh;
+}
+
+h1 {
+	background-color: goldenrod;
+	text-align: center;
+	
+}
+
+table {
+	display: table;
+	width: 100%;
+	border: 1px solid black;
+	background-color: goldenrod;
+	text-align: center;
+}
+
+th, td {
+	border: 1px solid black;
+}
