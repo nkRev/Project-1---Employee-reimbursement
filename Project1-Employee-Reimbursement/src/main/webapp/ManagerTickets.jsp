@@ -49,11 +49,13 @@
 						<td><c:out value="${ticket.submitDate}" /></td>
 						<td><c:out value="${ticket.description}" /></td>
 						<td><a
-							href="accept-ticket?id=<c:out value='${ticket.reimbursementId}' />">Accept</a>
+							href="accept-ticket?id=<c:out value='${ticket.reimbursementId}' />"
+							class="btn btn-primary">Accept</a>
 
 						</td>
 						<td><a
-							href="reject-ticket?id=<c:out value='${ticket.reimbursementId}' />">Reject</a>
+							href="reject-ticket?id=<c:out value='${ticket.reimbursementId}' />"
+							class="btn btn-primary">Reject</a>
 						</td>
 					</tr>
 				</c:forEach>
