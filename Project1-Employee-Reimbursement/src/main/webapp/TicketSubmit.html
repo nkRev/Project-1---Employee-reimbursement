@@ -3,42 +3,50 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Ticket Submission</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous">
+
+<link rel="stylesheet" href="css/ticket.css">
+
 </head>
 <body>
-    <div class="container">
-    <form id="Submit-Ticket" method="post" action="SubmitTicket">
-        <h1>Ticket Form</h1>
-        <h2>Reimbursement Type</h2>
-        <div class="FormRow">
-            <label for="Username">Lodging</label>
-            <input type="radio"  id="Ticket" name="Ticket" value="Lodging">
-            <label for="Username">Travel</label>
-            <input type="radio"  id="Ticket" name="Ticket" value="Travel">
-            <label for="Username">Food</label>
-            <input type="radio"  id="Ticket" name="Ticket" value="Food">
-            <label for="Username">Other</label>
-            <input type="radio" id="Ticket" name="Ticket" value="Other">
+	<div class="container">
+		<form id="Submit-Ticket" method="post" action="SubmitTicket">
+			<h1>Ticket Form</h1>
+			<h5>Reimbursement Type</h5>
+			<div class="FormRow">
+				<label for="Username">Lodging</label> <input type="radio"
+					id="Ticket" name="Ticket" value="Lodging"> <label
+					for="Username">Travel</label> <input type="radio" id="Ticket"
+					name="Ticket" value="Travel"> <label for="Username">Food</label>
+				<input type="radio" id="Ticket" name="Ticket" value="Food">
+				<label for="Username">Other</label> <input type="radio" id="Ticket"
+					name="Ticket" value="Other">
 
-        </div>
-        <div class="FormRow">
-              <label for="Dollar-Amount">Dollar Amount:</label>
-              <input type="number" required name="DollarAmount" id="DollarAmount" class="form-control" >
-        </div>
-        
-        <div class="FormRow">
-            <label for="Reason">Description of Request</label><br>
-            <textarea name="Reason" id="Reason" required rows="3" cols="20" class="form-control"></textarea>
-        </div>
-        <div>
-            <input type="button" class="btn btn-primary">
-        </div>
-    </form>
+			</div>
+			<div class="FormRow">
+				<label for="Dollar-Amount">Dollar Amount:</label> <input
+					type="number" required name="Dollar-Amount" id="Dollar-Amount">
+			</div>
 
-</div>
+			<div class="FormRow">
+				<label for="Reason">Description of Request</label><br>
+				<textarea name="Reason" id="Reason" required rows="3" cols="20"></textarea>
+			</div>
+			<div>
+				<input type="submit" class="btn btn-primary">
+			</div>
+		</form>
+	</div>
+
+
 	<script>
         $(document).ready(function(){
             $("#SubmitTicket").click(function(){
@@ -48,6 +56,5 @@
                 $.post("/SubmitTicket",{Ticket: ticket, DollarAmount: dollaramount, Reason:reason})
             })
         })
-
     </script>
 </body>

@@ -29,7 +29,6 @@ public class UserDaoImpl implements UserDAO {
 
 		} catch (Exception e) {
 
-
 			e.printStackTrace();
 
 		}
@@ -53,7 +52,6 @@ public class UserDaoImpl implements UserDAO {
 
 		} catch (Exception e) {
 
-
 			e.printStackTrace();
 		}
 
@@ -64,20 +62,20 @@ public class UserDaoImpl implements UserDAO {
 	public User getUserByEmail(String email) {
 		// TODO Auto-generated method stub
 		User u = new User();
-		
+
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
-			transaction = session.beginTransaction();
+		transaction = session.beginTransaction();
 
-			final String hql = "from User where email= :email";
+		final String hql = "from User where email= :email";
 
-			Query q = session.createQuery(hql);
+		Query q = session.createQuery(hql);
 
-			q.setParameter("email", email);
+		q.setParameter("email", email);
 
-			u = (User) q.getSingleResult();
+		u = (User) q.getSingleResult();
 
-			return u;
+		return u;
 
 
 	}

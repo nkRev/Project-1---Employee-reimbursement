@@ -19,12 +19,11 @@ public class HibernateUtil {
 		if (sf == null) {
 
 			Configuration cfg = new Configuration();
-			
+
 			cfg.configure();
-			
+
 			sf = cfg.buildSessionFactory();
-			
-		
+
 			return sf;
 		}
 		return sf;

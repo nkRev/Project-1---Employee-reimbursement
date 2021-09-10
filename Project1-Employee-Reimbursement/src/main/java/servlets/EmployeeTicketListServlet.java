@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import dao.ReimbursementDAO;
 import dao.ReimbursementDaoFactory;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,6 +22,13 @@ import model.Reimbursement;
 public class EmployeeTicketListServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	static Logger log = Logger.getRootLogger();
+
+
+public class EmployeeTicketListServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * Should work!
@@ -28,15 +39,17 @@ public class EmployeeTicketListServlet extends HttpServlet {
 	 * 
 	 */
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+		log.info("employee ticket view");
 		res.setContentType("text/html");
 
 		PrintWriter out = res.getWriter();
-		
+
 		// gets email... don't ask but login.html has the real answer...
 		String email = req.getParameter("Username");
 
 		ReimbursementDAO dao = ReimbursementDaoFactory.getDao();
+
+		List<Reimbursement> reimbursements = dao.getReimbursementByEmail(email);
 
 		List<Reimbursement> reimbursements = dao.getReimbursementByEmail(email);
 		

@@ -15,7 +15,7 @@ public class ReimbursementImpl implements ReimbursementDAO {
 	public Session session;
 
 	/**
-	 * SHOULD BE CORRECT
+	 * RETRIEVES ALL REIMBURSEMENTS
 	 */
 	@Override
 	public List<Reimbursement> getAllReimbursements() {
@@ -25,7 +25,7 @@ public class ReimbursementImpl implements ReimbursementDAO {
 		transaction = session.beginTransaction();
 
 		List<Reimbursement> reimbursements = session.createQuery("from Reimbursement").getResultList();
-		
+
 		transaction.commit();
 
 		return reimbursements;
@@ -49,6 +49,7 @@ public class ReimbursementImpl implements ReimbursementDAO {
 		List<Reimbursement> empReimbursements = q.getResultList();
 
 		return empReimbursements;
+
 	}
 
 	// RETRIEVES A SINGLE REIMBURSEMENT BY Ticket ID
@@ -59,7 +60,7 @@ public class ReimbursementImpl implements ReimbursementDAO {
 
 		transaction = session.beginTransaction();
 
-		final String hql = "from Reimbursement were ticket_id= :id";
+		final String hql = "from Reimbursement where ticket_id= :id";
 
 		Query q = session.createQuery(hql);
 
@@ -68,6 +69,7 @@ public class ReimbursementImpl implements ReimbursementDAO {
 		return r;
 
 	}
+
 
 	// RETRIEVES PENDING TICKETS
 	@Override
@@ -98,7 +100,7 @@ public class ReimbursementImpl implements ReimbursementDAO {
 		transaction = session.beginTransaction();
 		session.save(r);
 		transaction.commit();
-	
+
 	}
 
 	// UPDATE REIMBURSEMENT TICKET

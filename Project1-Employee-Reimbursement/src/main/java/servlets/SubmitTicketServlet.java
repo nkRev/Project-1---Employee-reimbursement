@@ -2,7 +2,9 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.util.Optional;
+
+import org.apache.log4j.Logger;
+
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -17,9 +19,9 @@ import model.Reimbursement;
 @WebServlet("/SubmitTicket")
 public class SubmitTicketServlet extends HttpServlet {
 
-	// default submit status is pending
-	// technically finished.. needs to be tested
+	static Logger log = Logger.getRootLogger();
 
+	// default submit status is pending
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
 		res.setContentType("text/html");
@@ -48,7 +50,7 @@ public class SubmitTicketServlet extends HttpServlet {
 
 		// read saved cookie from EmployeeTicketListServlet
 		Cookie c[] = req.getCookies();
-		
+
 		String email = c[0].getValue();
 
 		// set data as Reimbursement Object
@@ -61,7 +63,9 @@ public class SubmitTicketServlet extends HttpServlet {
 
 		dao.createReimbursement(r);
 
-		res.sendRedirect("EmployeeTicketListServlet?Username="+email);
+		log.info(r.getEmail() + "'s ticket is submitted; pending approval");
+		res.sendRedirect("EmployeeTicketListServlet?Username=" + email);
+
 
 	}
 
