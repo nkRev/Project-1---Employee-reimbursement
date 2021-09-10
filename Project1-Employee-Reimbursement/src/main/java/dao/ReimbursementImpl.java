@@ -31,6 +31,7 @@ public class ReimbursementImpl implements ReimbursementDAO {
 		return reimbursements;
 	}
 
+
 	// RETRIEVES A LIST OF REIMBURSEMENTS BY EMAIL
 	@Override
 	public List<Reimbursement> getReimbursementByEmail(String email) {
@@ -48,6 +49,7 @@ public class ReimbursementImpl implements ReimbursementDAO {
 		List<Reimbursement> empReimbursements = q.getResultList();
 
 		return empReimbursements;
+
 	}
 
 	// RETRIEVES A SINGLE REIMBURSEMENT BY Ticket ID
@@ -67,6 +69,7 @@ public class ReimbursementImpl implements ReimbursementDAO {
 		return r;
 
 	}
+
 
 	// RETRIEVES PENDING TICKETS
 	@Override

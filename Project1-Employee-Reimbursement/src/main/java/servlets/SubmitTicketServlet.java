@@ -5,6 +5,7 @@ import java.sql.Date;
 
 import org.apache.log4j.Logger;
 
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
@@ -17,6 +18,7 @@ import model.Reimbursement;
 
 @WebServlet("/SubmitTicket")
 public class SubmitTicketServlet extends HttpServlet {
+
 	static Logger log = Logger.getRootLogger();
 
 	// default submit status is pending
@@ -60,8 +62,10 @@ public class SubmitTicketServlet extends HttpServlet {
 		r.setSubmitDate(submitDate);
 
 		dao.createReimbursement(r);
+
 		log.info(r.getEmail() + "'s ticket is submitted; pending approval");
 		res.sendRedirect("EmployeeTicketListServlet?Username=" + email);
+
 
 	}
 

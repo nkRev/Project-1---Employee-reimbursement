@@ -17,6 +17,7 @@
 
 </head>
 <body>
+
 	<div class="container">
 		<h1 style="padding-bottom: .5rem;">
 			Tickets <br> <a href="TicketSubmit.html" class="btn btn-primary">Create

@@ -12,14 +12,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.User;
 
+
 public class LoginServlet extends HttpServlet {
 	private UserDaoImpl dao;
 	static Logger log = Logger.getRootLogger();
+
 
 	// technically finished; may need to be revised
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
 		log.info("Login Servlet");
+
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();
 
@@ -33,11 +36,13 @@ public class LoginServlet extends HttpServlet {
 		if (u.getEmail().equals(email) && u.getPassword().equals(password)) {
 
 			if (u.isManager() == true) {
+
 				log.info("Manager? " + u.isManager());
 				res.sendRedirect("ManagerTicketListServlet");
 
 			} else {
 				log.info("Manager? " + u.isManager());
+
 				res.sendRedirect("EmployeeTicketListServlet?Username=" + u.getEmail());
 
 			}
@@ -48,5 +53,6 @@ public class LoginServlet extends HttpServlet {
 		}
 
 	}
+
 
 }

@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.Reimbursement;
 
 @WebServlet("/ManagerTicketListServlet")
+
 public class ManagerTicketListServlet extends HttpServlet {
 	static Logger log = Logger.getRootLogger();
 
@@ -25,7 +26,6 @@ public class ManagerTicketListServlet extends HttpServlet {
 		res.setContentType("text/html");
 
 		PrintWriter out = res.getWriter();
-		out.println("<h1>fsdad</h1>");
 
 		ReimbursementDAO dao = ReimbursementDaoFactory.getDao();
 

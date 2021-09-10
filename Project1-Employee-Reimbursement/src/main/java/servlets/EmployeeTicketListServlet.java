@@ -11,16 +11,24 @@ import dao.ReimbursementDaoFactory;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Reimbursement;
 
+
 public class EmployeeTicketListServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	static Logger log = Logger.getRootLogger();
+
+
+public class EmployeeTicketListServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * Should work!
@@ -43,6 +51,8 @@ public class EmployeeTicketListServlet extends HttpServlet {
 
 		List<Reimbursement> reimbursements = dao.getReimbursementByEmail(email);
 
+		List<Reimbursement> reimbursements = dao.getReimbursementByEmail(email);
+		
 		req.setAttribute("listReimbursements", reimbursements);
 
 		Cookie c = new Cookie("email", email);
